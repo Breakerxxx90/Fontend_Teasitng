@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="wrap login">
+  <h1 class="display">Welcome</h1>
+  <p class="sub">Sign in to continue website.</p>
+  <form id="signupForm" novalidate>
+    <label class="flabel" for="username">input username.</label>
+    <input class="field" id="username" type="text" placeholder="Username" autocomplete="off" maxlength="40">
+    <p class="err" id="signupErr" role="alert"></p>
+    <button class="btn-yellow" id="signupBtn" type="submit">Sign up</button>
+  </form>
+</main>
+<script src="config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

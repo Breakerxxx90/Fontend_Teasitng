@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>My Listings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="stage">
+<main id="view-ask" class="wrap">
+  <div class="stagehead">
+    <button class="iconback invisible" id="topBack" type="button" aria-label="ย้อนกลับไปข้อก่อนหน้า">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 3 3 12l18 9-4-9z"/></svg>
+    </button>
+    <h1>My Listings</h1>
+    <button class="signout" id="signout" type="button">ออกจากระบบ</button>
+  </div>
+  <p class="stagesub" id="whoami"></p>
+  <div id="askBody"></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+</main>
+<main id="view-thanks" class="wrap thanks" hidden>
+  <div class="qcard">
+    <h2 class="display">Thank you</h2>
+    <p id="thanksMsg"></p>
+    <button class="btn-yellow" id="again" type="button">Sign out</button>
+  </div>
+</main>
+<script src="config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/questions.js"></script>
+</body>
+</html>

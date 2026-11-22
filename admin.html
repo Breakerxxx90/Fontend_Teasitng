@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<title>Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Prompt:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <section id="loginView" class="loginbox" hidden>
+    <h1 class="display">Admin</h1>
+    <form id="adminLogin">
+      <label class="flabel" for="adminUser">username</label>
+      <input class="field" id="adminUser" type="text" autocomplete="username">
+      <label class="flabel mt" for="pw">password</label>
+      <input class="field" id="pw" type="password" autocomplete="current-password">
+      <p class="err" id="adminErr" role="alert"></p>
+      <button class="btn-yellow" type="submit">เข้าสู่ระบบ</button>
+    </form>
+  </section>
+
+  <section id="dashView" hidden>
+    <div class="adminbar">
+      <h1 class="display">Admin</h1>
+      <button class="btn" id="logout" type="button">ออกจากระบบ</button>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-users" aria-selected="true">ผู้ใช้และคำตอบ</button>
+      <button class="tab" role="tab" id="tab-q" aria-selected="false">คำถาม</button>
+    </div>
+    <div class="panel" id="adminPanel"></div>
+  </section>
+</main>
+<script src="config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
