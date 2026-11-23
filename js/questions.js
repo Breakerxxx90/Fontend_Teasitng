@@ -46,7 +46,7 @@
       return;
     }
     var q = questions[idx], last = idx === questions.length - 1;
-    var canBack = idx >= 2;                       // Back appears from question 3 onward
+    var canBack = idx >= 1;                       // Back appears from question 3 onward
     topBack.classList.toggle('invisible', !canBack);
 
     var ta = h('textarea', { id: 'answer', placeholder: 'พิมพ์คำตอบที่นี่…', 'aria-label': 'คำตอบ', maxlength: '2000' });
