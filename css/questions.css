@@ -1,0 +1,99 @@
+/* Survey-style decoration for questions.html (loaded after style.css). Visual only: no logic here. */
+
+/* ---- stage background: soft dots + two big colour blobs */
+body.stage {
+  background-color: var(--yellow);
+  background-image: radial-gradient(rgba(43, 45, 60, .09) 1.6px, transparent 1.6px);
+  background-size: 24px 24px;
+}
+body.stage::before, body.stage::after {
+  content: ""; position: fixed; z-index: -1; border-radius: 50%; pointer-events: none;
+}
+body.stage::before {
+  width: min(62vw, 440px); aspect-ratio: 1; right: -14vw; top: -16vh;
+  background: var(--yellow-deep); opacity: .55;
+}
+body.stage::after {
+  width: min(48vw, 330px); aspect-ratio: 1; left: -12vw; bottom: -14vh;
+  background: var(--orange); opacity: .22;
+}
+
+/* ---- header */
+.stagehead h1 { font-size: 28px; letter-spacing: .01em; }
+.stagesub { opacity: .8; }
+
+/* ---- card */
+.qcard {
+  --pad: clamp(18px, 4.5vw, 34px);
+  position: relative; overflow: hidden; border-radius: 26px;
+  padding: 0 var(--pad) 32px;
+  box-shadow: 0 2px 0 rgba(255, 255, 255, .6) inset, 0 40px 70px -28px rgba(120, 80, 0, .5);
+  animation: cardIn .35s ease both;
+}
+@keyframes cardIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* progress bar across the top of the card */
+.progress { height: 9px; margin: 0 calc(var(--pad) * -1); background: var(--soft); }
+.progress i {
+  display: block; height: 100%; width: 0; border-radius: 0 8px 8px 0;
+  background: linear-gradient(90deg, var(--yellow-deep), var(--orange));
+  transition: width .45s cubic-bezier(.3, .8, .3, 1);
+}
+
+/* "Question  2 / 5" row */
+.qtop { margin-top: 22px; }
+.qtop .dot { background: var(--orange); box-shadow: 0 0 0 5px rgba(242, 121, 42, .18); }
+.qtop .count {
+  padding: 2px 13px; border-radius: 99px; background: var(--soft); color: var(--ink); font-weight: 600;
+}
+
+/* question text: big and readable, with a tag saying whether it is required */
+.qtext {
+  margin: 18px 0 0; color: var(--ink); font-weight: 600; line-height: 1.45;
+  font-size: clamp(19px, 4.8vw, 24px);
+}
+.qmeta { margin: 10px 0 0; }
+.tag {
+  display: inline-block; padding: 1px 11px; border-radius: 99px; font-size: 12px; font-weight: 500;
+  background: var(--soft); color: var(--muted);
+}
+.tag.req { color: var(--orange); }
+
+/* answer box: ruled paper look + clear focus */
+.abox {
+  margin-top: 18px; padding: 14px 18px 12px; border: 2px solid transparent; border-radius: 20px;
+  box-shadow: 0 14px 40px -14px var(--shadow); transition: border-color .2s, box-shadow .2s;
+}
+.abox:focus-within {
+  border-color: var(--yellow-deep);
+  box-shadow: 0 0 0 5px rgba(255, 194, 26, .28), 0 14px 40px -14px var(--shadow);
+}
+.abox textarea {
+  height: 168px; font-size: 16px; line-height: 28px;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 27px, var(--line) 27px, var(--line) 28px);
+  background-attachment: local;
+}
+.abox textarea:focus-visible { outline: none; } /* the box around it already shows focus */
+.abar { margin-top: 10px; }
+
+/* buttons (existing ones, just prettier) */
+.btn-next {
+  padding: 10px 20px; border-radius: 999px; font-size: 15px;
+  box-shadow: 0 10px 22px -10px rgba(255, 150, 0, .9);
+  transition: background .2s, opacity .2s, transform .15s;
+}
+.btn-next:hover { transform: translateY(-1px); }
+.btn-next:active { transform: translateY(0); }
+.btn-back { font-size: 15px; padding: 8px 12px; border-radius: 999px; }
+.btn-back:hover { background: var(--soft); }
+
+/* dots under the card */
+.dots i { transition: width .25s, opacity .25s; }
+
+@media (max-width: 480px) {
+  .abox textarea { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qcard { animation: none; }
+  .progress i, .btn-next, .abox { transition: none !important; }
+}

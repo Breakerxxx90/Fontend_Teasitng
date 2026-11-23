@@ -1,7 +1,7 @@
 'use strict';
 (async function () {
   var body = $('#askBody'), dots = $('#dots'), topBack = $('#topBack');
-  var me, questions = [], idx = 0, answers = {};
+  var me, questions = [], idx = 0, answers = {}, lastPct = 0;
 
   $('#signout').addEventListener('click', leave);
   $('#again').addEventListener('click', leave);
@@ -46,7 +46,7 @@
       return;
     }
     var q = questions[idx], last = idx === questions.length - 1;
-    var canBack = idx >= 1;                       // Back appears from question 3 onward
+    var canBack = idx >= 1;                       // Back appears from question 2 onward
     topBack.classList.toggle('invisible', !canBack);
 
     var ta = h('textarea', { id: 'answer', placeholder: 'พิมพ์คำตอบที่นี่…', 'aria-label': 'คำตอบ', maxlength: '2000' });
@@ -84,9 +84,17 @@
     }
     bar.append(next);
 
+    var pct = Math.round(((idx + 1) / questions.length) * 100);
+    var fill = h('i', { style: 'width:' + lastPct + '%' });
+    var prog = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'ความคืบหน้า', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(pct) }, fill);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { fill.style.width = pct + '%'; }); });
+    lastPct = pct;
+
     body.append(h('div', { class: 'qcard' },
+      prog,
       h('div', { class: 'qtop' }, h('span', { class: 'dot' }), 'Question', h('span', { class: 'count' }, (idx + 1) + ' / ' + questions.length)),
-      h('p', { class: 'qtext' }, '- ' + q.text),
+      h('p', { class: 'qtext' }, q.text),
+      h('div', { class: 'qmeta' }, h('span', { class: 'tag' + (q.required ? ' req' : '') }, q.required ? 'ต้องตอบ' : 'ไม่บังคับ')),
       h('div', { class: 'abox' }, ta, bar),
       err));
     sync(); renderDots(); ta.focus();
