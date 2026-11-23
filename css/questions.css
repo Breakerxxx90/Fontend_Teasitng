@@ -18,6 +18,32 @@ body.stage::after {
   background: var(--orange); opacity: .22;
 }
 
+/* ---- moving background */
+body.stage { animation: dotsDrift 7s linear infinite; }
+@keyframes dotsDrift { from { background-position: 0 0; } to { background-position: 24px 24px; } }
+
+body.stage::before { animation: floatA 14s ease-in-out infinite alternate; }
+body.stage::after  { animation: floatB 17s ease-in-out infinite alternate; }
+@keyframes floatA { from { transform: translate(0, 0) scale(1); }    to { transform: translate(-60px, 70px) scale(1.08); } }
+@keyframes floatB { from { transform: translate(0, 0) scale(1); }    to { transform: translate(70px, -60px) scale(1.1); } }
+
+/* two small rings drifting around */
+html::before, html::after {
+  content: ""; position: fixed; z-index: -1; border-radius: 50%; pointer-events: none;
+}
+html::before {
+  width: 92px; height: 92px; left: 7%; top: 30%;
+  border: 7px solid rgba(255, 255, 255, .5);
+  animation: bobA 9s ease-in-out infinite alternate;
+}
+html::after {
+  width: 58px; height: 58px; right: 9%; bottom: 24%;
+  border: 6px solid rgba(242, 121, 42, .45);
+  animation: bobB 11s ease-in-out infinite alternate;
+}
+@keyframes bobA { from { transform: translate(0, 0) rotate(0); }   to { transform: translate(40px, -60px) rotate(40deg); } }
+@keyframes bobB { from { transform: translate(0, 0) rotate(0); }   to { transform: translate(-50px, 50px) rotate(-40deg); } }
+
 /* ---- header */
 .stagehead h1 { font-size: 28px; letter-spacing: .01em; }
 .stagesub { opacity: .8; }
@@ -94,6 +120,6 @@ body.stage::after {
   .abox textarea { height: 150px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .qcard { animation: none; }
+  .qcard, body.stage, body.stage::before, body.stage::after, html::before, html::after { animation: none; }
   .progress i, .btn-next, .abox { transition: none !important; }
 }
